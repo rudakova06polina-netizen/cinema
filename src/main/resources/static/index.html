@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><title>Кинотеатр</title>
+<link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><h2>Кинотеатр — сеансы</h2><a href="/logout">Выйти</a></header>
+<main>
+  <div class="card">
+    <h3 id="formTitle">Новый сеанс</h3>
+    <input id="title" placeholder="Название фильма">
+    <input id="studio" placeholder="Киностудия">
+    <input id="dt" type="datetime-local">
+    <input id="total" type="number" min="1" placeholder="Билетов на сеанс">
+    <input id="sold" type="number" min="0" placeholder="Продано">
+    <button onclick="save()">Сохранить</button>
+    <button class="light" onclick="resetForm()">Сбросить</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="card">
+    <input id="search" placeholder="Поиск по названию или киностудии" oninput="load()" style="width:320px">
+    <b style="margin-left:16px">Записей в таблице: <span id="count">0</span></b>
+    <p style="color:#666;margin:4px 0">Сортировка: по дате сеанса, затем по названию фильма</p>
+    <table>
+      <thead><tr><th>ID</th><th>Название фильма</th><th>Киностудия</th><th>Дата и время</th>
+        <th>Билетов</th><th>Продано</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Количество сеансов по дням (последние 30 дней)</h3>
+    <canvas id="hist" width="1050" height="280"></canvas>
+  </div>
+</main>
+<script src="/app.js"></script>
+</body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><title>Регистрация — Кинотеатр</title>
+<link rel="stylesheet" href="/style.css"></head>
+<body>
+<div class="card auth">
+  <h2>Регистрация</h2>
+  <input id="u" placeholder="Логин">
+  <input id="p" type="password" placeholder="Пароль">
+  <button onclick="reg()">Зарегистрироваться</button>
+  <p class="err" id="e"></p>
+  <p><a href="/login.html">Назад ко входу</a></p>
+</div>
+<script>
+async function reg(){
+  const r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username:document.getElementById('u').value,password:document.getElementById('p').value})});
+  if(r.ok){location.href='/login.html';return;}
+  let m='Ошибка регистрации';try{m=(await r.json()).message||m;}catch(e){}
+  document.getElementById('e').textContent=m;
+}
+</script>
+</body></html>
